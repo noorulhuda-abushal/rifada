@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>رِفادة | Rifada</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="site-header"></header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <span class="hero-tag" data-i18n="hero_tag"></span>
+      <h1 data-i18n="hero_title"></h1>
+      <p data-i18n="hero_sub"></p>
+    </div>
+  </section>
+
+  <section class="search-wrap">
+    <form class="search-card" id="search-form" novalidate>
+      <h2 class="display" style="font-size: 26px" data-i18n="search_title"></h2>
+      <div class="form-grid">
+        <div class="field">
+          <label for="men" data-i18n="men"></label>
+          <input id="men" type="number" min="0" inputmode="numeric" data-i18n-placeholder="ph_number">
+        </div>
+        <div class="field">
+          <label for="women" data-i18n="women"></label>
+          <input id="women" type="number" min="0" inputmode="numeric" data-i18n-placeholder="ph_number">
+        </div>
+        <div class="field">
+          <label for="checkin" data-i18n="checkin"></label>
+          <input id="checkin" type="date">
+        </div>
+        <div class="field">
+          <label for="checkout" data-i18n="checkout"></label>
+          <input id="checkout" type="date">
+        </div>
+      </div>
+      <p class="form-error hidden" id="search-error" role="alert"></p>
+      <div class="search-footer">
+        <span class="muted" id="group-total"></span>
+        <button type="submit" class="btn" data-i18n="show_hotels"></button>
+      </div>
+    </form>
+  </section>
+
+  <section class="container how">
+    <h2 data-i18n="how_title"></h2>
+    <div class="how-grid">
+      <div class="how-item">
+        <span class="how-num">1</span>
+        <h3 data-i18n="how1_t"></h3>
+        <p data-i18n="how1_d"></p>
+      </div>
+      <div class="how-item">
+        <span class="how-num">2</span>
+        <h3 data-i18n="how2_t"></h3>
+        <p data-i18n="how2_d"></p>
+      </div>
+      <div class="how-item">
+        <span class="how-num">3</span>
+        <h3 data-i18n="how3_t"></h3>
+        <p data-i18n="how3_d"></p>
+      </div>
+    </div>
+  </section>
+
+  <footer id="site-footer"></footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>

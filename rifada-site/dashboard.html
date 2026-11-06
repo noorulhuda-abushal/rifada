@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>رِفادة | لوحة الفندق</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="site-header"></header>
+
+  <div class="dash">
+    <nav class="dash-side">
+      <a href="#rooms" class="active" data-i18n="menu_rooms"></a>
+      <a href="#requests" data-i18n="menu_requests"></a>
+      <a href="#" class="soon" data-i18n="menu_info"></a>
+      <a href="#" class="soon" data-i18n="menu_settings"></a>
+    </nav>
+
+    <main class="dash-main">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px">
+        <div style="display: flex; flex-direction: column; gap: 4px">
+          <span class="muted" data-i18n="dash_label"></span>
+          <h1 class="display" style="font-size: 38px" id="dash-hotel-name"></h1>
+        </div>
+        <div class="field" style="min-width: 240px">
+          <label for="hotel-select" data-i18n="dash_choose"></label>
+          <select id="hotel-select"></select>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><span class="muted" data-i18n="stat_free"></span><strong id="stat-free"></strong></div>
+        <div class="stat"><span class="muted" data-i18n="stat_new"></span><strong id="stat-new"></strong></div>
+        <div class="stat"><span class="muted" data-i18n="stat_accepted"></span><strong id="stat-accepted"></strong></div>
+      </div>
+
+      <section class="card" id="rooms">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px">
+          <h2 data-i18n="rooms_season"></h2>
+          <button type="button" class="btn btn-sm" id="save-rooms" data-i18n="save"></button>
+        </div>
+        <div class="table" id="rooms-table"></div>
+      </section>
+
+      <section class="card" id="requests">
+        <h2 data-i18n="requests_title"></h2>
+        <div id="requests-list"></div>
+      </section>
+
+      <div>
+        <button type="button" class="btn btn-outline btn-sm" id="reset-demo" data-i18n="reset_demo"></button>
+      </div>
+    </main>
+  </div>
+
+  <footer id="site-footer"></footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

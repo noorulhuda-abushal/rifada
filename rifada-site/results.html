@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>رِفادة | الفنادق المتاحة</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="site-header"></header>
+
+  <div class="container">
+    <div class="steps-path">
+      <span data-i18n="step1"></span><span class="sep">←</span>
+      <span class="current" data-i18n="step2"></span><span class="sep">←</span>
+      <span data-i18n="step3"></span>
+    </div>
+
+    <div class="chips" style="padding-top: 14px">
+      <span class="chip" id="chip-people"></span>
+      <span class="chip" id="chip-dates"></span>
+      <a href="index.html?edit=1" class="chip chip-outline" data-i18n="edit_search"></a>
+    </div>
+
+    <div class="layout">
+      <!-- الفلاتر -->
+      <aside class="side card filters" id="filters-box">
+        <button type="button" class="filters-toggle" id="filters-toggle" aria-expanded="true" aria-controls="filter-body">
+          <h2 data-i18n="filters"></h2>
+          <svg class="chevron" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="filter-body" id="filter-body">
+
+        <div class="filter-group">
+          <span class="title" data-i18n="f_time"></span>
+          <label class="check"><input type="checkbox" name="time" value="lt10"> <span data-i18n="t_lt10"></span></label>
+          <label class="check"><input type="checkbox" name="time" value="10_20"> <span data-i18n="t_10_20"></span></label>
+          <label class="check"><input type="checkbox" name="time" value="20_30"> <span data-i18n="t_20_30"></span></label>
+          <label class="check"><input type="checkbox" name="time" value="gt30"> <span data-i18n="t_gt30"></span></label>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="filter-group">
+          <span class="title" data-i18n="f_room"></span>
+          <label class="check"><input type="checkbox" name="room" value="double"> <span data-i18n="double"></span></label>
+          <label class="check"><input type="checkbox" name="room" value="triple"> <span data-i18n="triple"></span></label>
+          <label class="check"><input type="checkbox" name="room" value="quad"> <span data-i18n="quad"></span></label>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="filter-group">
+          <span class="title" data-i18n="f_needs"></span>
+          <label class="check"><input type="checkbox" name="need" value="separate"> <span data-i18n="separate"></span></label>
+          <label class="check"><input type="checkbox" name="need" value="elderly"> <span data-i18n="elderly"></span></label>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="field">
+          <label for="sort" data-i18n="sort"></label>
+          <select id="sort">
+            <option value="near" data-i18n="sort_near"></option>
+            <option value="price" data-i18n="sort_price"></option>
+            <option value="free" data-i18n="sort_free"></option>
+          </select>
+        </div>
+        </div>
+      </aside>
+
+      <!-- النتائج -->
+      <main class="main">
+        <div class="results-head">
+          <h1 id="results-title"></h1>
+        </div>
+
+        <div id="map" class="map"></div>
+        <p class="map-note" data-i18n="map_note"></p>
+
+        <div id="hotel-list" style="display: flex; flex-direction: column; gap: 16px"></div>
+        <p class="muted" id="not-fit"></p>
+      </main>
+    </div>
+  </div>
+
+  <footer id="site-footer"></footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/results.js"></script>
+</body>
+</html>
