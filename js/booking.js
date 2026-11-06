@@ -6,9 +6,11 @@
 initPage('results');
 
 const bookingHotel = getHotel(getParam('id'));
-const bookingSearch = getSearch();
+const bookingSearch = requireSearch() || { men: 0, women: 0, checkin: '', checkout: '' };
 const bookingNights = nightsBetween(bookingSearch.checkin, bookingSearch.checkout) || 1;
-const bookingPlan = bookingHotel ? makePlan(bookingHotel, bookingSearch.men, bookingSearch.women) : null;
+const bookingPlan = bookingHotel && bookingSearch.men + bookingSearch.women > 0
+  ? makePlan(bookingHotel, bookingSearch.men, bookingSearch.women)
+  : null;
 
 const layout = document.getElementById('booking-layout');
 document.getElementById('back-link').href = bookingHotel ? `hotel.html?id=${bookingHotel.id}` : 'results.html';

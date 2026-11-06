@@ -78,7 +78,8 @@ function toggleTheme() {
 /* ---------- الأيقونات ---------- */
 const ICON_MOON = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
 const ICON_SUN = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
-const ICON_CHECK = '<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+const ICON_GLOBE = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>';
+const ICON_CHECK ='<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
 
 /* ---------- الهيدر والفوتر ---------- */
 function renderHeader(active) {
@@ -99,10 +100,18 @@ function renderHeader(active) {
         ${link('dashboard.html', 'nav_owners', 'dashboard')}
       </nav>
       <div class="controls">
-        <div class="lang-switch">
-          ${Object.keys(LANG_NAMES).map((l) =>
-            `<button type="button" data-lang="${l}" lang="${l}" class="${l === lang ? 'active' : ''}">${LANG_NAMES[l]}</button>`
-          ).join('')}
+        <div class="lang-menu" id="lang-menu">
+          <button type="button" class="lang-btn" id="lang-btn" aria-haspopup="true" aria-expanded="false" aria-controls="lang-list" aria-label="${t('lang_label')}">
+            ${ICON_GLOBE}<span>${LANG_NAMES[lang]}</span>
+          </button>
+          <ul class="lang-list hidden" id="lang-list">
+            ${Object.keys(LANG_NAMES).map((l) => `
+              <li>
+                <button type="button" data-lang="${l}" lang="${l}" class="${l === lang ? 'active' : ''}">
+                  <span>${LANG_NAMES[l]}</span>${l === lang ? '<span aria-hidden="true">✓</span>' : ''}
+                </button>
+              </li>`).join('')}
+          </ul>
         </div>
         <button type="button" class="icon-btn" id="theme-toggle" aria-label="${dark ? t('light') : t('dark')}" title="${dark ? t('light') : t('dark')}">
           ${dark ? ICON_SUN : ICON_MOON}
@@ -111,10 +120,37 @@ function renderHeader(active) {
       </div>
     </div>`;
 
+  // قائمة اللغات: تفتح وتسكر بالضغط على الزر
+  const langBtn = el.querySelector('#lang-btn');
+  const langList = el.querySelector('#lang-list');
+  langBtn.addEventListener('click', (event) => {
+    event.stopPropagation();
+    const open = langList.classList.toggle('hidden') === false;
+    langBtn.setAttribute('aria-expanded', String(open));
+  });
   el.querySelectorAll('[data-lang]').forEach((btn) => {
     btn.addEventListener('click', () => setLang(btn.dataset.lang));
   });
   el.querySelector('#theme-toggle').addEventListener('click', toggleTheme);
+
+  // تسكير القائمة عند الضغط خارجها أو على زر Esc (نضيفها مرة وحدة فقط)
+  if (!window.__langMenuBound) {
+    window.__langMenuBound = true;
+    const closeMenu = () => {
+      const list = document.getElementById('lang-list');
+      const btn = document.getElementById('lang-btn');
+      if (list && !list.classList.contains('hidden')) {
+        list.classList.add('hidden');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    };
+    document.addEventListener('click', (event) => {
+      if (!event.target.closest('#lang-menu')) closeMenu();
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeMenu();
+    });
+  }
   el.querySelector('#login-btn').addEventListener('click', () => toast(t('feature_soon')));
 }
 
@@ -158,13 +194,16 @@ function toast(message) {
 }
 
 /* ---------- بيانات البحث ---------- */
+// يرجّع آخر بحث سوّاه المستخدم، أو null إذا ما بحث للحين
 function getSearch() {
-  return STORE.get('rifada_search', {
-    men: 24,
-    women: 16,
-    checkin: '2027-05-10',
-    checkout: '2027-05-20'
-  });
+  return STORE.get('rifada_search', null);
+}
+
+// للصفحات التي تحتاج بحثاً: إذا ما فيه بحث، نرجع للرئيسية
+function requireSearch() {
+  const search = getSearch();
+  if (!search) location.replace('index.html');
+  return search;
 }
 
 function nightsBetween(checkin, checkout) {

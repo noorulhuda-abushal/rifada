@@ -6,8 +6,11 @@ initPage('results');
 
 const page = document.getElementById('hotel-page');
 const hotel = getHotel(getParam('id'));
+const hasSearch = requireSearch();
 
-if (!hotel) {
+if (!hasSearch) {
+  // ننتقل للرئيسية (requireSearch تتكفّل بذلك)
+} else if (!hotel) {
   page.innerHTML = `<div class="notice warn">${t('hotel_not_found')}</div>`;
 } else {
   renderHotel(hotel);

@@ -36,4 +36,4 @@
 | `js/home.js`, `js/results.js`, `js/hotel.js`, `js/booking.js`, `js/dashboard.js` | كود كل صفحة |
 
 ## التقنيات
-HTML · CSS · JavaScript · Leaflet (الخريطة) · OpenStreetMap / CARTO
+HTML · CSS · JavaScript · Leaflet (الخريطة) · OpenStreetMap

@@ -20,6 +20,7 @@ const I18N = {
     dark: 'الوضع الليلي',
     light: 'الوضع النهاري',
     lang_soon: 'هذه اللغة قيد الإعداد',
+    lang_label: 'اللغة',
     feature_soon: 'هذه الخاصية قيد الإعداد في النسخة المبدئية',
     footer_note: 'نسخة مبدئية — جميع الفنادق والأسعار تجريبية',
     sar: 'ر.س',
@@ -57,6 +58,8 @@ const I18N = {
     how3_d: 'تُحجز الغرف باسم الحملة مدة 48 ساعة حتى إتمام الدفع.',
     err_count: 'يرجى إدخال عدد صحيح من الأفراد (فرد واحد على الأقل).',
     err_dates: 'يجب أن يكون تاريخ المغادرة بعد تاريخ الوصول.',
+    err_dates_missing: 'يرجى اختيار تاريخ الوصول وتاريخ المغادرة.',
+    ph_number: 'مثال: 20',
 
     // النتائج
     filters: 'تصفية النتائج',
@@ -184,6 +187,7 @@ const I18N = {
     dark: 'Dark mode',
     light: 'Light mode',
     lang_soon: 'This language is coming soon',
+    lang_label: 'Language',
     feature_soon: 'This feature is not available in the prototype yet',
     footer_note: 'Prototype — all hotels and prices are sample data',
     sar: 'SAR',
@@ -220,6 +224,8 @@ const I18N = {
     how3_d: 'Rooms are held for your group for 48 hours until payment is completed.',
     err_count: 'Please enter a valid number of pilgrims (at least one).',
     err_dates: 'Check-out must be after check-in.',
+    err_dates_missing: 'Please choose check-in and check-out dates.',
+    ph_number: 'e.g. 20',
 
     filters: 'Filters',
     f_time: 'Walking time to the Grand Mosque',
